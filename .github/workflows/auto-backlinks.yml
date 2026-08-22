@@ -1,0 +1,38 @@
+name: Auto Backlink Generator
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:
+
+jobs:
+  generate-backlinks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create SEO Content
+        run: |
+          echo "Generating backlinks for aitoolsgems.netlify.app"
+          # This workflow creates automatic pings to search engines
+          curl -s "https://www.google.com/ping?sitemap=https://aitoolsgems.netlify.app/sitemap.xml" || true
+          curl -s "https://webmaster.yandex.com/ping?sitemap=https://aitoolsgems.netlify.app/sitemap.xml" || true
+          
+          # Submit to IndexNow
+          curl -s -X POST "https://api.indexnow.org/IndexNow" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "host": "aitoolsgems.netlify.app",
+              "key": "9f2c1e7d8a4b6f0c3e5a7d9b1c4e6f8a",
+              "keyLocation": "https://aitoolsgems.netlify.app/9f2c1e7d8a4b6f0c3e5a7d9b1c4e6f8a.txt",
+              "urlList": [
+                "https://aitoolsgems.netlify.app/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-content-creators/",
+                "https://aitoolsgems.netlify.app/best-free-ai-tools-2026/",
+                "https://aitoolsgems.netlify.app/make-money-with-ai/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-video-editing/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-instagram/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-youtube/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-tiktok/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-freelancers/",
+                "https://aitoolsgems.netlify.app/ai-tools-for-writers/"
+              ]
+            }' || true
