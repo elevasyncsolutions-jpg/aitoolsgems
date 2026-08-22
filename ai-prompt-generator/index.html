@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Prompt Generator - Better Prompts in Seconds | AI Tools Gems</title>
+<meta name="description" content="Generate better AI prompts instantly. Works with ChatGPT, Claude, Gemini. Copy-paste ready prompts for any use case.">
+<meta name="keywords" content="AI prompt generator, ChatGPT prompts, prompt engineering, AI prompts, better prompts">
+<link rel="canonical" href="https://aitoolsgems.netlify.app/ai-prompt-generator/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Free AI Prompt Generator - Better Prompts in Seconds">
+<meta property="og:description" content="Generate better AI prompts instantly. Copy-paste ready.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-38S3JXCRJ2")</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#050505;color:#fff;font-family:Inter,sans-serif}
+a{color:#00ff66;text-decoration:none}
+.gen-card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin-bottom:16px}
+.gen-card label{display:block;color:#9ca3af;font-size:.875rem;margin-bottom:6px}
+select,input,textarea{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px;color:#fff;font-size:1rem;margin-bottom:16px}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#00ff66}
+textarea{min-height:80px;resize:vertical}
+.btn{background:#00ff66;color:#000;font-weight:700;padding:14px 28px;border-radius:12px;border:none;cursor:pointer;font-size:1rem;transition:all .2s}
+.btn:hover{background:#00cc55;transform:scale(1.02)}
+.prompt-output{background:#0a1a10;border:1px solid #00ff6640;border-radius:12px;padding:20px;margin-top:16px;white-space:pre-wrap;font-size:.95rem;line-height:1.7;position:relative}
+.copy-btn{position:absolute;top:12px;right:12px;background:#333;color:#fff;padding:6px 14px;border-radius:8px;border:none;cursor:pointer;font-size:.8rem}
+.copy-btn:hover{background:#00ff66;color:#000}
+.template-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.template-card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:16px;cursor:pointer;transition:all .2s;text-align:center}
+.template-card:hover{border-color:#00ff66;transform:translateY(-2px)}
+.template-card.active{border-color:#00ff66;background:#0a1a10}
+.template-card .icon{font-size:2rem;margin-bottom:8px}
+.template-card .name{font-weight:600;font-size:.85rem}
+.hidden{display:none!important}
+</style>
+</head>
+<body class="p-6">
+<div class="max-w-3xl mx-auto">
+<a href="https://aitoolsgems.netlify.app/" class="text-sm text-gray-500 mb-6 block">&larr; Back to AI Tools Gems</a>
+
+<h1 class="text-4xl font-extrabold mb-2">AI Prompt Generator</h1>
+<p class="text-gray-400 text-lg mb-8">Generate better prompts for ChatGPT, Claude, and Gemini in seconds.</p>
+
+<h2 class="text-lg font-bold mb-4 text-gray-300">Quick Templates</h2>
+<div class="template-grid" id="templates"></div>
+
+<div class="gen-card">
+<label>What do you want the AI to do?</label>
+<textarea id="task" placeholder="e.g., Write a blog post about sustainable fashion"></textarea>
+
+<label>Category</label>
+<select id="category">
+<option value="writing">Writing & Content</option>
+<option value="marketing">Marketing & Sales</option>
+<option value="code">Code & Development</option>
+<option value="business">Business & Strategy</option>
+<option value="creative">Creative & Design</option>
+<option value="learning">Learning & Research</option>
+</select>
+
+<label>Tone</label>
+<select id="tone">
+<option value="professional">Professional</option>
+<option value="casual">Casual</option>
+<option value="technical">Technical</option>
+<option value="creative">Creative</option>
+<option value="concise">Concise</option>
+</select>
+
+<label>Detail Level</label>
+<select id="detail">
+<option value="brief">Brief (1-2 paragraphs)</option>
+<option value="standard" selected>Standard (3-5 paragraphs)</option>
+<option value="comprehensive">Comprehensive (detailed)</option>
+</select>
+
+<button class="btn w-full" onclick="generatePrompt()">Generate Prompt</button>
+</div>
+
+<div id="outputSection" class="hidden">
+<h2 class="text-lg font-bold mb-3 text-gray-300">Your Enhanced Prompt</h2>
+<div class="prompt-output" id="promptOutput">
+<button class="copy-btn" onclick="copyPrompt()">Copy</button>
+<span id="promptText"></span>
+</div>
+<div class="mt-4 text-center">
+<p class="text-gray-500 mb-3 text-sm">Need better AI tools to use this prompt?</p>
+<a href="https://aitoolsgems.netlify.app/" class="inline-block bg-[#00ff66] text-black font-bold px-6 py-3 rounded-xl">Explore AI Tools →</a>
+</div>
+</div>
+</div>
+
+<script>
+var templates = [
+  {icon:"✍️",name:"Blog Post",task:"Write a 1500-word SEO-optimized blog post",cat:"writing"},
+  {icon:"📧",name:"Email Sequence",task:"Create a 5-email nurture sequence",cat:"marketing"},
+  {icon:"💻",name:"Code Review",task:"Review this code for bugs and improvements",cat:"code"},
+  {icon:"📊",name:"Business Plan",task:"Write a one-page business plan",cat:"business"},
+  {icon:"🎨",name:"Brand Voice",task:"Define a brand voice guide",cat:"creative"},
+  {icon:"📚",name:"Research Summary",task:"Summarize this research paper",cat:"learning"},
+  {icon:"📱",name:"Social Media",task:"Create 7 days of social media posts",cat:"marketing"},
+  {icon:"🔧",name:"API Docs",task:"Write API documentation",cat:"code"},
+  {icon:"📈",name:"Market Analysis",task:"Analyze this market opportunity",cat:"business"},
+  {icon:"🎯",name:"Product Brief",task:"Write a product requirements document",cat:"business"},
+  {icon:"💡",name:"Brainstorm",task:"Generate 20 creative ideas for",cat:"creative"},
+  {icon:"📝",name:"Landing Page",task:"Write copy for a landing page",cat:"marketing"}
+];
+
+var el = document.getElementById('templates');
+templates.forEach(function(t) {
+  var div = document.createElement('div');
+  div.className = 'template-card';
+  div.innerHTML = '<div class="icon">' + t.icon + '</div><div class="name">' + t.name + '</div>';
+  div.onclick = function() {
+    document.querySelectorAll('.template-card').forEach(function(c) { c.classList.remove('active'); });
+    div.classList.add('active');
+    document.getElementById('task').value = t.task;
+    document.getElementById('category').value = t.cat;
+  };
+  el.appendChild(div);
+});
+
+function generatePrompt() {
+  var task = document.getElementById('task').value.trim();
+  if (!task) { alert('Please describe what you want the AI to do.'); return; }
+  
+  var cat = document.getElementById('category').value;
+  var tone = document.getElementById('tone').value;
+  var detail = document.getElementById('detail').value;
+  
+  var catContext = {
+    writing: "You are an experienced content writer and editor.",
+    marketing: "You are a senior marketing strategist with 10+ years of experience.",
+    code: "You are a senior software engineer and code reviewer.",
+    business: "You are a business consultant and strategic advisor.",
+    creative: "You are a creative director and brand strategist.",
+    learning: "You are a research analyst and educator."
+  };
+  
+  var toneMap = {
+    professional: "Use a professional, authoritative tone.",
+    casual: "Use a conversational, friendly tone.",
+    technical: "Use precise technical language with industry terminology.",
+    creative: "Use vivid, engaging language with metaphors and storytelling.",
+    concise: "Be direct and concise. No fluff."
+  };
+  
+  var detailMap = {
+    brief: "Keep it brief - 1-2 paragraphs max.",
+    standard: "Provide a standard response - 3-5 paragraphs with clear structure.",
+    comprehensive: "Be thorough and comprehensive. Include examples, headers, and actionable details."
+  };
+  
+  var prompt = catContext[cat] + "\n\n" + toneMap[tone] + "\n\n" + detailMap[detail] + "\n\nTASK: " + task + "\n\nRequirements:\n- Use clear headers and structure\n- Include specific examples where relevant\n- End with actionable next steps\n- Make it immediately usable (no placeholders)";
+  
+  document.getElementById('promptText').textContent = prompt;
+  document.getElementById('outputSection').classList.remove('hidden');
+  document.getElementById('outputSection').scrollIntoView({behavior:'smooth'});
+}
+
+function copyPrompt() {
+  var text = document.getElementById('promptText').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>

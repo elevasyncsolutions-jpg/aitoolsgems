@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What AI Tool Are You? - Fun Personality Quiz | AI Tools Gems</title>
+<meta name="description" content="Find out which AI tool matches your personality. Fun quiz that tells you if you're ChatGPT, Claude, Gemini, or Midjourney.">
+<meta name="keywords" content="what AI tool are you, AI personality quiz, which AI am I, AI tool quiz">
+<link rel="canonical" href="https://aitoolsgems.netlify.app/what-ai-tool-are-you/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="What AI Tool Are You? - Fun Personality Quiz">
+<meta property="og:description" content="Find out which AI matches your personality!">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-38S3JXCRJ2")</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#050505;color:#fff;font-family:Inter,sans-serif;min-height:100vh}
+a{color:#00ff66;text-decoration:none}
+.qcard{background:#111;border:1px solid #222;border-radius:16px;padding:32px;max-width:640px;margin:0 auto}
+.opt{background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:16px 20px;cursor:pointer;transition:all .2s;margin-bottom:12px;display:block;font-size:1rem}
+.opt:hover{border-color:#00ff66}
+.opt.sel{border-color:#00ff66;background:#0a1a10}
+.prog{height:4px;background:#222;border-radius:4px;margin-bottom:24px}
+.progfill{height:100%;background:#00ff66;border-radius:4px;transition:width .3s}
+.resultbox{background:linear-gradient(135deg,#0a1a10,#111);border:2px solid #00ff66;border-radius:16px;padding:32px;text-align:center;margin:24px 0}
+.resultbox h2{font-size:2rem;font-weight:800;color:#00ff66;margin-bottom:8px}
+.bigemoji{font-size:5rem;margin-bottom:16px}
+.sharebtn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;font-weight:600;cursor:pointer;border:none;font-size:1rem}
+.sharebtn:hover{transform:scale(1.05)}
+.shx{background:#1DA1F2;color:#fff}
+.shrd{background:#FF4500;color:#fff}
+.shcp{background:#333;color:#fff}
+.cta{background:#00ff66;color:#000;font-weight:800;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;font-size:1.1rem;display:inline-block;text-decoration:none}
+.cta:hover{background:#00cc55}
+</style>
+</head>
+<body class="p-6">
+<div class="max-w-2xl mx-auto">
+<a href="https://aitoolsgems.netlify.app/" class="text-sm text-gray-500 mb-6 block">&larr; Back to AI Tools Gems</a>
+<div id="quiz">
+<div class="text-center mb-8">
+<h1 class="text-4xl font-extrabold mb-3">What AI Tool Are You?</h1>
+<p class="text-gray-400 text-lg">8 fun questions. Find your AI personality match.</p>
+</div>
+<div class="prog"><div class="progfill" id="pf" style="width:0%"></div></div>
+<div class="qcard" id="qc"></div>
+</div>
+<div id="res" style="display:none">
+<div class="text-center mb-4"><h1 class="text-4xl font-extrabold mb-3">You Are...</h1></div>
+<div class="resultbox" id="rbox"></div>
+<div id="rdesc" class="text-center text-gray-400 mb-8 max-w-xl mx-auto"></div>
+<div class="text-center mb-6">
+<p class="text-gray-500 mb-3">Share your result:</p>
+<div class="flex justify-center gap-3 flex-wrap">
+<button class="sharebtn shx" onclick="shX()">Share on X</button>
+<button class="sharebtn shrd" onclick="shRD()">Share on Reddit</button>
+<button class="sharebtn shcp" onclick="shCP()">Copy Result</button>
+</div>
+</div>
+<div class="text-center mt-8">
+<a href="https://aitoolsgems.netlify.app/" class="cta">Explore All AI Tools</a>
+</div>
+</div>
+</div>
+<script>
+var Q=[
+{q:"Your friend asks for help at 3am. You:",o:["Reply instantly with a full guide","Say 'I'll look into it tomorrow'","Send a 200-page research document","Generate a beautiful infographic"]},
+{q:"Your ideal Friday night:",o:["Deep conversation about the universe","Coding a side project","Reading 5 books at once","Creating art or music"]},
+{q:"At a party you:",o:["Know a little about everything","Go deep on one topic with someone","Quietly observe and analyze","Create the playlist and decor"]},
+{q:"Your superpower:",o:["Instant answers to anything","Understanding complex code","Holding 200K words in memory","Making things look beautiful"]},
+{q:"You get annoyed when:",o:["People ask obvious questions","Code has bugs","Documents are too long","Designs are ugly"]},
+{q:"Your workspace:",o:["Organized and full of plugins","Dark mode IDE with 47 tabs","Minimal with everything loaded","Pinterest-perfect aesthetic"]},
+{q:"Your motto:",o:["I can help with that","Let me debug this","Let me read the full thing first","A picture is worth 1000 words"]},
+{q:"Pick a color:",o:["Green like ChatGPT","Purple like Claude","Blue like Gemini","Rainbow like Midjourney"]}
+];
+var A=[];
+var cur=0;
+var scores={chatgpt:0,claude:0,gemini:0,midjourney:0};
+var profiles={
+chatgpt:{emoji:"🤖",name:"ChatGPT",color:"#10a37f",desc:"You're the Swiss Army knife of AI. Versatile, reliable, and always ready to help with anything. You know a little about everything and can adapt to any conversation. People come to you because you just work."},
+claude:{emoji:"🧠",name:"Claude",color:"#7c3aed",desc:"You're the thoughtful intellectual. Deep, nuanced, and incredibly capable when things get complex. You prefer quality over speed and always think before you speak. People trust you with the hard stuff."},
+gemini:{emoji:"💎",name:"Gemini",color:"#4285f4",desc:"You're the multimodal wonder. You see the big picture and connect dots others miss. You're integrated into everything and always up to date. You're the one who remembers every detail."},
+midjourney:{emoji:"🎨",name:"Midjourney",color:"#e879f9",desc:"You're the creative genius. You turn ideas into stunning visuals and make everything beautiful. You're artistic, imaginative, and see the world differently. People come to you when words aren't enough."}
+};
+var mappings=[
+  [[0,"chatgpt"],[1,"claude"],[2,"claude"],[3,"midjourney"]],
+  [[0,"gemini"],[1,"chatgpt"],[2,"claude"],[3,"midjourney"]],
+  [[0,"chatgpt"],[1,"claude"],[2,"gemini"],[3,"midjourney"]],
+  [[0,"chatgpt"],[1,"chatgpt"],[2,"claude"],[3,"midjourney"]],
+  [[0,"chatgpt"],[1,"chatgpt"],[2,"claude"],[3,"midjourney"]],
+  [[0,"chatgpt"],[1,"chatgpt"],[2,"claude"],[3,"midjourney"]],
+  [[0,"chatgpt"],[1,"chatgpt"],[2,"claude"],[3,"midjourney"]],
+  [[0,"chatgpt"],[1,"claude"],[2,"gemini"],[3,"midjourney"]]
+];
+function render(){
+  var q=Q[cur];
+  document.getElementById("pf").style.width=((cur/Q.length)*100)+"%";
+  var h="<h2 class='text-xl font-bold mb-6'>"+q.q+"</h2>";
+  for(var i=0;i<q.o.length;i++){
+    h+='<div class="opt" onclick="pick('+i+',this)">'+q.o[i]+"</div>";
+  }
+  document.getElementById("qc").innerHTML=h;
+}
+function pick(i,el){
+  var os=document.querySelectorAll(".opt");
+  for(var j=0;j<os.length;j++)os[j].classList.remove("sel");
+  el.classList.add("sel");
+  scores[mappings[cur][i][1]]++;
+  A.push(i);
+  setTimeout(function(){
+    cur++;
+    if(cur<Q.length)render(); else show();
+  },400);
+}
+function show(){
+  document.getElementById("quiz").style.display="none";
+  document.getElementById("res").style.display="block";
+  var best="chatgpt",bestS=0;
+  for(var k in scores){if(scores[k]>bestS){bestS=scores[k];best=k;}}
+  var p=profiles[best];
+  document.getElementById("rbox").innerHTML='<div class="bigemoji">'+p.emoji+'</div><h2 style="color:'+p.color+'">'+p.name+'</h2>';
+  document.getElementById("rdesc").innerHTML="<p class='text-lg'>"+p.desc+"</p>";
+  window._rt="I'm "+p.name+"! "+p.emoji+" "+p.desc.split(".")[0]+".";
+}
+function shX(){window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(window._rt+"\n\nWhat AI tool are YOU? 👇")+"&url="+encodeURIComponent("https://aitoolsgems.netlify.app/what-ai-tool-are-you/"));}
+function shRD(){window.open("https://reddit.com/submit?title="+encodeURIComponent("I'm ChatGPT! What AI tool are you? (fun quiz)")+"&url="+encodeURIComponent("https://aitoolsgems.netlify.app/what-ai-tool-are-you/"));}
+function shCP(){if(navigator.clipboard)navigator.clipboard.writeText(window._rt+"\nhttps://aitoolsgems.netlify.app/what-ai-tool-are-you/").then(function(){alert("Copied!");});}
+render();
+</script>
+</body>
+</html>

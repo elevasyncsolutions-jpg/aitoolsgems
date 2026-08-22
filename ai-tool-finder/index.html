@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Perfect AI Tool - Free Quiz | AI Tools Gems</title>
+<meta name="description" content="Answer 5 questions and find the perfect AI tools for your needs. Free instant results with personalized recommendations.">
+<meta name="keywords" content="AI tool finder, best AI tool, AI tool quiz, which AI tool, AI tool recommendation">
+<link rel="canonical" href="https://aitoolsgems.netlify.app/ai-tool-finder/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Find Your Perfect AI Tool - Free Quiz">
+<meta property="og:description" content="Answer 5 questions and discover the best AI tools for you.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-38S3JXCRJ2")</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#050505;color:#fff;font-family:Inter,sans-serif;min-height:100vh}
+a{color:#00ff66;text-decoration:none}
+.quiz-card{background:#111;border:1px solid #222;border-radius:16px;padding:32px;max-width:640px;margin:0 auto}
+.option{background:#1a1a1a;border:2px solid #333;border-radius:12px;padding:16px 20px;cursor:pointer;transition:all .2s;margin-bottom:12px;display:block}
+.option:hover{border-color:#00ff66;background:#1a1a1a}
+.option.selected{border-color:#00ff66;background:#0a1a10}
+.result-card{background:linear-gradient(135deg,#0a1a10,#111);border:1px solid #00ff66;border-radius:16px;padding:24px;margin-bottom:16px}
+.result-card h3{color:#00ff66;font-size:1.25rem;font-weight:700;margin-bottom:8px}
+.tag{display:inline-block;background:#0a1a10;border:1px solid #00ff6640;color:#00ff66;padding:4px 12px;border-radius:20px;font-size:.75rem;margin:4px 4px 4px 0}
+.progress{height:4px;background:#222;border-radius:4px;margin-bottom:24px}
+.progress-fill{height:100%;background:#00ff66;border-radius:4px;transition:width .3s}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s;font-size:1rem}
+.share-btn:hover{transform:scale(1.05)}
+.share-twitter{background:#1DA1F2;color:#fff}
+.share-reddit{background:#FF4500;color:#fff}
+.share-copy{background:#333;color:#fff}
+.big-cta{background:#00ff66;color:#000;font-weight:800;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;font-size:1.1rem;transition:all .2s;display:inline-block;text-decoration:none}
+.big-cta:hover{background:#00cc55;transform:scale(1.03)}
+</style>
+</head>
+<body class="p-6">
+<div class="max-w-2xl mx-auto">
+<a href="https://aitoolsgems.netlify.app/" class="text-sm text-gray-500 mb-6 block">&larr; Back to AI Tools Gems</a>
+
+<div id="quizSection">
+<div class="text-center mb-8">
+<h1 class="text-4xl font-extrabold mb-3">Find Your Perfect AI Tool</h1>
+<p class="text-gray-400 text-lg">Answer 5 questions. Get personalized recommendations.</p>
+</div>
+<div class="progress"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="quiz-card" id="questionCard"></div>
+</div>
+
+<div id="resultsSection" style="display:none">
+<div class="text-center mb-8">
+<h1 class="text-4xl font-extrabold mb-3">Your Perfect AI Stack</h1>
+<p class="text-gray-400 text-lg" id="resultSummary"></p>
+</div>
+<div id="resultCards"></div>
+<div class="text-center mt-8 mb-6">
+<p class="text-gray-400 mb-4">Get 150+ more AI tool recommendations:</p>
+<a href="https://aitoolsgems.netlify.app/" class="big-cta">Get Full Database</a>
+</div>
+<div class="text-center">
+<p class="text-gray-500 mb-3">Share your results:</p>
+<div class="flex justify-center gap-3 flex-wrap">
+<button class="share-btn share-twitter" onclick="shareTwitter()">Share on X</button>
+<button class="share-btn share-reddit" onclick="shareReddit()">Share on Reddit</button>
+<button class="share-btn share-copy" onclick="copyResults()">Copy Results</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+var questions = [
+  {q:"What do you primarily need AI for?", opts:[
+    {v:"writing",l:"Writing & Content",icon:"✍️"},
+    {v:"image",l:"Image & Design",icon:"🎨"},
+    {v:"code",l:"Code & Development",icon:"💻"},
+    {v:"video",l:"Video & Audio",icon:"🎬"},
+    {v:"business",l:"Business & Marketing",icon:"📈"}
+  ]},
+  {q:"What's your budget per month?", opts:[
+    {v:"free",l:"Free only",icon:"💰"},
+    {v:"low",l:"Under $20/mo",icon:"💵"},
+    {v:"mid",l:"$20-50/mo",icon:"💳"},
+    {v:"high",l:"$50+/mo",icon:"🏦"}
+  ]},
+  {q:"Your experience level with AI tools?", opts:[
+    {v:"beginner",l:"Complete beginner",icon:"🌱"},
+    {v:"intermediate",l:"Used a few tools",icon:"🌿"},
+    {v:"advanced",l:"Power user",icon:"🌳"}
+  ]},
+  {q:"What matters most to you?", opts:[
+    {v:"quality",l:"Best quality output",icon:"⭐"},
+    {v:"speed",l:"Speed & efficiency",icon:"⚡"},
+    {v:"price",l:"Lowest price",icon:"💰"},
+    {v:"ease",l:"Easiest to use",icon:"🎯"}
+  ]},
+  {q:"Team or solo use?", opts:[
+    {v:"solo",l:"Just me",icon:"👤"},
+    {v:"small",l:"Small team (2-10)",icon:"👥"},
+    {v:"large",l:"Large team (10+)",icon:"🏢"}
+  ]}
+];
+
+var toolDB = {
+  writing: {
+    free: [{name:"ChatGPT Free",desc:"General writing, brainstorming, research. The most capable free AI.",tags:["Chatbot","Versatile"]},{name:"Grammarly",desc:"Grammar and style checking. Catches errors AI misses.",tags:["Editing","Free tier"]},{name:"Notion AI",desc:"Writing assistant built into your workspace.",tags:["Productivity","Notes"]}],
+    low: [{name:"ChatGPT Plus",desc:"GPT-4 access, plugins, DALL-E, faster responses.",tags:["$20/mo","Best overall"]},{name:"Claude Pro",desc:"200K context window. Best for long documents and nuanced writing.",tags:["$20/mo","Long docs"]},{name:"Jasper",desc:"Marketing copy, blog posts, ad copy. Built for marketers.",tags:["$16/mo","Marketing"]}],
+    mid: [{name:"Jasper Boss Mode",desc:"Full marketing suite with brand voice, team collaboration.",tags:["$49/mo","Brand voice"]},{name:"Writesonic",desc:"Blog articles, ads, emails, product descriptions at scale.",tags:["$36/mo","Multi-format"]}],
+    high: [{name:"Jasper Enterprise",desc:"Custom AI models, brand voice, team workflows, analytics.",tags:["Custom","Enterprise"]},{name:"Copy.ai Teams",desc:"Workflow automation for sales and marketing content.",tags:["Custom","Workflows"]}]
+  },
+  image: {
+    free: [{name:"Canva Free",desc:"Thousands of templates, basic AI features, easy design.",tags:["Design","Templates"]},{name:"Microsoft Designer",desc:"AI image generation. Free with Microsoft account.",tags:["Free gen","Easy"]}],
+    low: [{name:"Midjourney",desc:"Best quality AI art and images. Discord-based.",tags:["$10/mo","Best quality"]},{name:"Canva Pro",desc:"Full AI suite, brand kit, background remover, Magic Write.",tags:["$13/mo","All-in-one"]},{name:"Leonardo AI",desc:"Image generation, editing, fine-tuning. Generous free tier.",tags:["Free tier","Versatile"]}],
+    mid: [{name:"Adobe Firefly",desc:"Commercial-safe AI images. Integrated with Photoshop.",tags:["$23/mo","Commercial"]},{name:"Midjourney Standard",desc:"More generations, relax mode, stealth mode.",tags:["$30/mo","Unlimited"]}],
+    high: [{name:"Adobe CC + Firefly",desc:"Full Creative Suite with AI integration across all apps.",tags:["$60/mo","Pro suite"]}]
+  },
+  code: {
+    free: [{name:"GitHub Copilot Free",desc:"Limited code completions. Great for trying AI coding.",tags:["Code","Free tier"]},{name:"Codeium",desc:"Free AI code completion for any IDE. Unlimited completions.",tags:["Free","VS Code"]}],
+    low: [{name:"GitHub Copilot",desc:"AI pair programmer. Best language support and context.",tags:["$10/mo","Best for code"]},{name:"Cursor",desc:"AI-native code editor. Chat with your codebase.",tags:["$20/mo","AI IDE"]},{name:"Tabnine",desc:"Code completion that runs locally. Privacy-focused.",tags:["$12/mo","Privacy"]}],
+    mid: [{name:"Cursor Pro",desc:"Full AI coding with power features, unlimited usage.",tags:["$40/mo","Pro IDE"]},{name:"Cody",desc:"Code intelligence across entire repos. Context-aware.",tags:["$9/mo","Codebase AI"]}],
+    high: [{name:"GitHub Copilot Enterprise",desc:"Org-wide AI coding with knowledge bases and security.",tags:["$39/user","Enterprise"]}]
+  },
+  video: {
+    free: [{name:"CapCut Free",desc:"Video editing with AI effects, transitions, captions.",tags:["Free","Mobile+Desktop"]},{name:"DaVinci Resolve",desc:"Hollywood-grade editing. Free version is incredibly powerful.",tags:["Free","Pro grade"]}],
+    low: [{name:"CapCut Pro",desc:"Advanced AI features, no watermark, premium effects.",tags:["$8/mo","Creator"]},{name:"Descript",desc:"Edit video by editing text. Revolutionary approach.",tags:["$24/mo","Text-based"]},{name:"Opus Clip",desc:"Auto-clip long videos into viral short-form content.",tags:["$19/mo","Repurposing"]}],
+    mid: [{name:"Descript Pro",desc:"Full transcription, screen recording, filler word removal.",tags:["$33/mo","Pro editing"]},{name:"Runway",desc:"AI video generation and editing. Gen-2 text-to-video.",tags:["$15/mo","Gen-2"]}],
+    high: [{name:"Adobe Premiere + AI",desc:"Industry-standard editing with AI-powered features.",tags:["$23/mo","Industry std"]}]
+  },
+  business: {
+    free: [{name:"ChatGPT Free",desc:"Market research, competitor analysis, copywriting.",tags:["Free","Versatile"]},{name:"Canva Free",desc:"Social media graphics, presentations, logos.",tags:["Free","Design"]}],
+    low: [{name:"HubSpot Free CRM",desc:"Contact management, email tracking, lead capture.",tags:["Free CRM","Sales"]},{name:"ChatGPT Plus",desc:"Deep research, analysis, data processing, image creation.",tags:["$20/mo","Research"]},{name:"Canva Pro",desc:"Brand kit, AI design, background remover, content planner.",tags:["$13/mo","Marketing"]}],
+    mid: [{name:"HubSpot Starter",desc:"Marketing automation, email campaigns, landing pages.",tags:["$20/mo","Automation"]},{name:"Jasper",desc:"AI marketing content at scale with brand voice.",tags:["$49/mo","Content"]}],
+    high: [{name:"HubSpot Enterprise",desc:"Full marketing + sales + service AI platform.",tags:["$1200/mo","Enterprise"]}]
+  }
+};
+
+var currentQ = 0;
+var answers = [];
+
+function renderQuestion() {
+  var q = questions[currentQ];
+  document.getElementById('progressFill').style.width = ((currentQ / questions.length) * 100) + '%';
+  var html = '<h2 class="text-xl font-bold mb-6">' + q.q + '</h2>';
+  for (var i = 0; i < q.opts.length; i++) {
+    var o = q.opts[i];
+    html += '<div class="option" onclick="selectAnswer(this)" data-value="' + o.v + '">' +
+      '<span class="text-xl mr-3">' + o.icon + '</span> ' + o.l + '</div>';
+  }
+  document.getElementById('questionCard').innerHTML = html;
+}
+
+function selectAnswer(el) {
+  var opts = document.querySelectorAll('.option');
+  for (var i = 0; i < opts.length; i++) { opts[i].classList.remove('selected'); }
+  el.classList.add('selected');
+  answers.push(el.getAttribute('data-value'));
+  
+  setTimeout(function() {
+    currentQ++;
+    if (currentQ < questions.length) {
+      renderQuestion();
+    } else {
+      showResults();
+    }
+  }, 400);
+}
+
+function showResults() {
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('resultsSection').style.display = 'block';
+  
+  var category = answers[0];
+  var budget = answers[1];
+  var tools = [];
+  if (toolDB[category] && toolDB[category][budget]) {
+    tools = toolDB[category][budget];
+  } else if (toolDB[category] && toolDB[category].low) {
+    tools = toolDB[category].low;
+  }
+  
+  var catNames = {writing:"Writing & Content",image:"Image & Design",code:"Code & Development",video:"Video & Audio",business:"Business & Marketing"};
+  var budgetNames = {free:"Free",low:"Budget ($0-20)",mid:"Mid-range ($20-50)",high:"Premium ($50+)"};
+  
+  document.getElementById('resultSummary').textContent = 
+    (catNames[category]||category) + ' tools · ' + (budgetNames[budget]||budget) + ' budget';
+  
+  var cardsHtml = '';
+  for (var i = 0; i < tools.length; i++) {
+    var t = tools[i];
+    var tagsHtml = '';
+    for (var j = 0; j < t.tags.length; j++) {
+      tagsHtml += '<span class="tag">' + t.tags[j] + '</span>';
+    }
+    cardsHtml += '<div class="result-card">' +
+      '<h3>' + t.name + '</h3>' +
+      '<p class="text-gray-400 mb-3">' + t.desc + '</p>' +
+      '<div>' + tagsHtml + '</div>' +
+      '<a href="https://aitoolsgems.netlify.app/" class="inline-block mt-3 text-[#00ff66] text-sm font-semibold">See all options &rarr;</a>' +
+      '</div>';
+  }
+  document.getElementById('resultCards').innerHTML = cardsHtml;
+  
+  var toolNames = [];
+  for (var i = 0; i < tools.length; i++) { toolNames.push(tools[i].name); }
+  window._resultText = 'I found my perfect AI stack: ' + (catNames[category]||category) + ' · ' + (budgetNames[budget]||budget) + '. Tools: ' + toolNames.join(', ');
+}
+
+function shareTwitter() {
+  var text = encodeURIComponent(window._resultText + '\n\nFind YOUR perfect AI stack:');
+  window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + encodeURIComponent('https://aitoolsgems.netlify.app/ai-tool-finder/'), '_blank');
+}
+
+function shareReddit() {
+  var title = encodeURIComponent('I found my perfect AI tool stack - free quiz');
+  var url = encodeURIComponent('https://aitoolsgems.netlify.app/ai-tool-finder/');
+  window.open('https://reddit.com/submit?title=' + title + '&url=' + url, '_blank');
+}
+
+function copyResults() {
+  var text = window._resultText + '\nhttps://aitoolsgems.netlify.app/ai-tool-finder/';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() { alert('Copied! Share it anywhere.'); });
+  } else {
+    prompt('Copy this:', text);
+  }
+}
+
+renderQuestion();
+</script>
+</body>
+</html>
