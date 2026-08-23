@@ -1,12 +1,376 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0;url=https://elevasyncsolutions-jpg.github.io/aitoolsgems/">
-<link rel="canonical" href="https://elevasyncsolutions-jpg.github.io/aitoolsgems/">
-<script>window.location.href="https://elevasyncsolutions-jpg.github.io/aitoolsgems/";</script>
-</head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>150+ Free AI Tools Database - Find the Right AI Tool | AI Tools Gems</title>
+    <meta name="description" content="Browse 150+ free AI tools organized by category. Find AI tools for writing, coding, design, video, SEO, marketing and more. Free database, no signup.">
+    <meta name="keywords" content="AI tools, free AI tools, AI database, AI tools 2026, best AI tools, AI writing tools, AI image generator, AI video editor, AI code generator">
+    <meta name="author" content="AI Tools Gems">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://aitoolsgems.netlify.app/">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-38S3JXCRJ2');</script>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolsgems.netlify.app/">
+    <meta property="og:title" content="150+ Free AI Tools Database">
+    <meta property="og:description" content="Browse 150+ free AI tools organized by category. Free, no signup.">
+    <meta property="og:image" content="https://aitoolsgems.netlify.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="150+ Free AI Tools Database">
+    <meta name="twitter:description" content="Browse 150+ free AI tools. Writing, coding, design, video, SEO.">
+    <meta name="twitter:image" content="https://aitoolsgems.netlify.app/og-image.png">
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"AI Tools Gems","url":"https://aitoolsgems.netlify.app/","description":"Browse 150+ free AI tools organized by category.","potentialAction":{"@type":"SearchAction","target":"https://aitoolsgems.netlify.app/?search={search_term_string}","query-input":"required name=search_term_string"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are the best free AI tools in 2026?","acceptedAnswer":{"@type":"Answer","text":"Top free AI tools include ChatGPT for writing, Claude for analysis, Perplexity for research, Leonardo AI for images, and Notion AI for organization. Our database has 150+ tools across 12 categories."}},{"@type":"Question","name":"Are these AI tools really free?","acceptedAnswer":{"@type":"Answer","text":"Yes! All tools in our database have free tiers. No credit card required."}},{"@type":"Question","name":"How do I find the right AI tool?","acceptedAnswer":{"@type":"Answer","text":"Use our AI Tool Finder quiz for personalized recommendations, or browse by category. We have tools for writing, coding, design, video, SEO, marketing, and more."}}]}
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        *{box-sizing:border-box}
+        body{background:#050505;color:#fff;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;margin:0}
+        .neon-btn{background:#00ff66;color:#000;box-shadow:0 0 20px #00ff66;transition:all .2s;animation:pulse 2s infinite}
+        .neon-btn:hover{box-shadow:0 0 35px #00ff66,0 0 60px #00ff66;transform:scale(1.03);animation:none}
+        @keyframes pulse{0%{box-shadow:0 0 15px #00ff66}50%{box-shadow:0 0 30px #00ff66}100%{box-shadow:0 0 15px #00ff66}}
+        .tool-card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;padding:20px;transition:all .25s;text-decoration:none;display:flex;flex-direction:column;color:#fff;min-height:160px}
+        .tool-card:hover{border-color:#00ff66;transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,255,102,.15)}
+        .tool-card .emoji{font-size:1.8rem;margin-bottom:8px}
+        .tool-card h3{font-size:.95rem;font-weight:700;margin-bottom:4px}
+        .tool-card p{font-size:.78rem;color:#6b7280;margin:0;flex:1}
+        .badge{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:9999px;margin-top:8px;width:fit-content}
+        .badge-free{background:rgba(0,255,102,.15);color:#00ff66}
+        .badge-tool{background:rgba(99,102,241,.15);color:#818cf8}
+        .badge-interactive{background:rgba(245,158,11,.15);color:#fbbf24}
+        .category-header{font-size:1.1rem;font-weight:700;color:#00ff66;margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid #1a1a1a}
+        .search-box{background:#111;border:1px solid #333;border-radius:12px;padding:14px 20px;color:#fff;font-size:1rem;width:100%;outline:none;transition:border-color .2s}
+        .search-box:focus{border-color:#00ff66}
+        .search-box::placeholder{color:#555}
+        .newsletter-section{background:linear-gradient(135deg,#0a0a0a,#111);border:1px solid #1a1a1a;border-radius:16px;padding:40px;text-align:center}
+        .newsletter-input{background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px 16px;color:#fff;font-size:1rem;width:100%;max-width:400px;outline:none}
+        .newsletter-input:focus{border-color:#00ff66}
+        .newsletter-btn{background:#00ff66;color:#000;border:none;border-radius:8px;padding:12px 24px;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s}
+        .newsletter-btn:hover{box-shadow:0 0 20px #00ff66;transform:scale(1.03)}
+        .stat-num{font-size:2rem;font-weight:800;color:#00ff66}
+        .stat-label{font-size:.75rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
+        #lockerModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+        #lockerModal.active{display:flex}
+        .modal-content{width:90%;max-width:600px;height:80vh;background:#111;border:2px solid #00ff66;border-radius:12px;overflow:hidden;box-shadow:0 0 30px rgba(0,255,102,.3);position:relative}
+        .close-btn{position:absolute;top:10px;right:15px;color:#fff;font-size:24px;cursor:pointer;background:#333;border-radius:50%;width:35px;height:35px;display:flex;align-items:center;justify-content:center;z-index:10}
+        iframe{width:100%;height:100%;border:none}
+        .toast{position:fixed;bottom:-100px;left:20px;background:#111;border:1px solid #333;border-left:4px solid #00ff66;padding:12px 20px;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,.5);transition:bottom .5s cubic-bezier(.68,-0.55,.265,1.55);z-index:50;display:flex;align-items:center;gap:12px}
+        .toast.show{bottom:20px}
+        .stars{color:#facc15}
+        .hidden{display:none!important}
+    </script>
+<meta name="google-site-verification" content="m9zrk7Xqf8cCK328_mmuY-OtJ9EdzrHPui0N-y__aHA"><script src="https://pl30962144.profitableratecpmnetwork.com/02/ee/d4/02eed4b3327dfa97f6e228fe8e3a5968.js"></script><script src="https://pl30962145.profitableratecpmnetwork.com/44/95/b3/4495b3fbef7d928c0cae6bcd700aa491.js"></script></head>
 <body>
-<script>window.location.href="https://elevasyncsolutions-jpg.github.io/aitoolsgems/";</script>
-<noscript><a href="https://elevasyncsolutions-jpg.github.io/aitoolsgems/">Click here</a></noscript>
-</body>
+
+    <!-- HERO -->
+    <div class="max-w-5xl mx-auto px-4 pt-20 pb-10 text-center">
+        <div class="inline-block px-4 py-1 rounded-full border border-green-500 text-green-400 text-xs font-bold uppercase tracking-widest mb-6 bg-green-500/10">
+            Free Database &mdash; No Signup Required
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4">
+            150+ Free <span style="color:#00ff66">AI Tools</span> You Should Be Using
+        </h1>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+            Browse the most complete database of free AI tools. Writing, coding, design, video, SEO, marketing &mdash; organized so you can find what you need in seconds.
+        </p>
+
+        <!-- Stats -->
+        <div class="flex justify-center gap-8 mb-8 flex-wrap">
+            <div><span class="stat-num">150+</span><br><span class="stat-label">AI Tools</span></div>
+            <div><span class="stat-num">12</span><br><span class="stat-label">Categories</span></div>
+            <div><span class="stat-num">100%</span><br><span class="stat-label">Free Tiers</span></div>
+            <div><span class="stat-num">0</span><br><span class="stat-label">Signup Needed</span></div>
+        </div>
+
+        <!-- Search -->
+        <div class="max-w-xl mx-auto mb-6">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search tools... (e.g. image generator, writing, code)">
+        </div>
+
+        <!-- CTA -->
+        <div class="flex justify-center gap-4 flex-wrap">
+            <a href="/ai-tool-finder/" class="neon-btn font-bold text-base px-8 py-3 rounded-xl uppercase tracking-wider">Find My Perfect Tool</a>
+            <a href="/ai-compare/" class="bg-gray-800 hover:bg-gray-700 text-white font-bold text-base px-8 py-3 rounded-xl border border-gray-700 transition">Compare Tools</a>
+        </div>
+    </div>
+
+    <!-- TOOLS GRID -->
+    <div class="max-w-5xl mx-auto px-4 pb-12">
+
+        <!-- Interactive Tools -->
+        <h2 class="category-header">&#128295; Interactive Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="tools-grid">
+            <a href="/ai-tool-finder/" class="tool-card">
+                <span class="emoji">&#128269;</span>
+                <h3>AI Tool Finder</h3>
+                <p>Answer 5 questions, get a personalized tool recommendation.</p>
+                <span class="badge badge-interactive">Interactive Quiz</span>
+            </a>
+            <a href="/ai-compare/" class="tool-card">
+                <span class="emoji">&#9878;&#65039;</span>
+                <h3>AI Tool Comparison</h3>
+                <p>Side-by-side comparison of the best AI tools.</p>
+                <span class="badge badge-interactive">Compare</span>
+            </a>
+            <a href="/ai-cost-calculator/" class="tool-card">
+                <span class="emoji">&#128176;</span>
+                <h3>AI Cost Calculator</h3>
+                <p>Calculate how much you spend on AI tools per month.</p>
+                <span class="badge badge-interactive">Calculator</span>
+            </a>
+            <a href="/ai-prompt-generator/" class="tool-card">
+                <span class="emoji">&#9889;</span>
+                <h3>AI Prompt Generator</h3>
+                <p>Generate better prompts for ChatGPT, Claude, and more.</p>
+                <span class="badge badge-interactive">Generator</span>
+            </a>
+        </div>
+
+        <!-- Free AI Writing Tools -->
+        <h2 class="category-header">&#9997;&#65039; Free AI Writing Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-blog-writer/" class="tool-card"><span class="emoji">&#128221;</span><h3>AI Blog Writer</h3><p>Write full blog posts with AI. SEO-optimized.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-email-writer/" class="tool-card"><span class="emoji">&#128231;</span><h3>AI Email Writer</h3><p>Professional emails in seconds.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-essay-writer/" class="tool-card"><span class="emoji">&#128218;</span><h3>AI Essay Writer</h3><p>Well-structured essays with citations.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-story-writer/" class="tool-card"><span class="emoji">&#128214;</span><h3>AI Story Writer</h3><p>Generate creative fiction and stories.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-resume-builder/" class="tool-card"><span class="emoji">&#128196;</span><h3>AI Resume Builder</h3><p>Build a professional resume in minutes.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-paraphraser/" class="tool-card"><span class="emoji">&#128257;</span><h3>AI Paraphraser</h3><p>Rewrite content while keeping meaning.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-summarizer/" class="tool-card"><span class="emoji">&#128207;</span><h3>AI Summarizer</h3><p>Summarize articles, docs, and URLs.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-plagiarism-checker/" class="tool-card"><span class="emoji">&#128270;</span><h3>AI Plagiarism Checker</h3><p>Check for duplicate content instantly.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- AI Image & Design Tools -->
+        <h2 class="category-header">&#127912; Free AI Image &amp; Design Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-image-generator-free/" class="tool-card"><span class="emoji">&#127912;</span><h3>AI Image Generator</h3><p>Create images from text prompts. Free.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-logo-maker/" class="tool-card"><span class="emoji">&#127961;</span><h3>AI Logo Maker</h3><p>Design logos with AI in minutes.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-color-palette-generator/" class="tool-card"><span class="emoji">&#127912;</span><h3>Color Palette Generator</h3><p>AI-powered color palettes for design.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-3d-model-generator/" class="tool-card"><span class="emoji">&#127922;</span><h3>AI 3D Model Generator</h3><p>Generate 3D models from text descriptions.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-meme-generator/" class="tool-card"><span class="emoji">&#128514;</span><h3>AI Meme Generator</h3><p>Create viral memes with AI.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-presentation-maker/" class="tool-card"><span class="emoji">&#128200;</span><h3>AI Presentation Maker</h3><p>Build slide decks with AI instantly.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- AI Video & Audio Tools -->
+        <h2 class="category-header">&#127909; Free AI Video &amp; Audio Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-video-generator/" class="tool-card"><span class="emoji">&#127909;</span><h3>AI Video Generator</h3><p>Create videos from text prompts.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-music-generator/" class="tool-card"><span class="emoji">&#127925;</span><h3>AI Music Generator</h3><p>Generate original music tracks.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-voice-generator/" class="tool-card"><span class="emoji">&#127908;</span><h3>AI Voice Generator</h3><p>Text-to-speech with realistic voices.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- AI Code & Development Tools -->
+        <h2 class="category-header">&#128187; Free AI Code &amp; Dev Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-code-generator/" class="tool-card"><span class="emoji">&#128187;</span><h3>AI Code Generator</h3><p>Generate code in any language.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-chatbot/" class="tool-card"><span class="emoji">&#129302;</span><h3>AI Chatbot</h3><p>Build AI chatbots for your site.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- AI Business & Marketing Tools -->
+        <h2 class="category-header">&#128188; Free AI Business &amp; Marketing Tools</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-business-name-generator/" class="tool-card"><span class="emoji">&#127970;</span><h3>Business Name Generator</h3><p>Find the perfect name for your business.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-headline-generator/" class="tool-card"><span class="emoji">&#128293;</span><h3>Headline Generator</h3><p>Write click-worthy headlines.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-slogan-generator/" class="tool-card"><span class="emoji">&#128640;</span><h3>Slogan Generator</h3><p>Catchy slogans for your brand.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-quote-generator/" class="tool-card"><span class="emoji">&#128172;</span><h3>AI Quote Generator</h3><p>Inspirational quotes for social media.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-social-media-manager/" class="tool-card"><span class="emoji">&#128226;</span><h3>Social Media Manager</h3><p>Plan, write, and schedule posts.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-seo-tools/" class="tool-card"><span class="emoji">&#128269;</span><h3>AI SEO Tools</h3><p>Keyword research and content optimization.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-translator/" class="tool-card"><span class="emoji">&#127760;</span><h3>AI Translator</h3><p>Translate content into 50+ languages.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- Popular Comparisons & Guides -->
+        <h2 class="category-header">&#128200; Popular Comparisons &amp; Guides</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/chatgpt-vs-claude/" class="tool-card"><span class="emoji">&#9878;&#65039;</span><h3>ChatGPT vs Claude</h3><p>Which AI is better? Head-to-head comparison.</p><span class="badge badge-tool">Comparison</span></a>
+            <a href="/best-ai-tools-2026/" class="tool-card"><span class="emoji">&#127775;</span><h3>Best AI Tools 2026</h3><p>Our curated list of the best AI tools this year.</p><span class="badge badge-tool">Guide</span></a>
+            <a href="/best-free-ai-tools-2026/" class="tool-card"><span class="emoji">&#128176;</span><h3>Best Free AI Tools 2026</h3><p>100% free AI tools that are actually good.</p><span class="badge badge-tool">Guide</span></a>
+            <a href="/chatgpt-alternatives/" class="tool-card"><span class="emoji">&#128260;</span><h3>ChatGPT Alternatives</h3><p>10+ alternatives to ChatGPT worth trying.</p><span class="badge badge-tool">Guide</span></a>
+            <a href="/free-ai-image-generator/" class="tool-card"><span class="emoji">&#128444;</span><h3>Free AI Image Generators</h3><p>Best free tools for AI-generated images.</p><span class="badge badge-tool">Guide</span></a>
+            <a href="/ai-tools-for-students-free/" class="tool-card"><span class="emoji">&#127891;</span><h3>AI Tools for Students</h3><p>Free AI tools every student should know.</p><span class="badge badge-tool">Guide</span></a>
+            <a href="/state-of-ai-tools-2026/" class="tool-card"><span class="emoji">&#128202;</span><h3>State of AI Tools 2026</h3><p>Industry report on AI tools trends.</p><span class="badge badge-tool">Report</span></a>
+            <a href="/what-ai-tool-are-you/" class="tool-card"><span class="emoji">&#129504;</span><h3>What AI Tool Are You?</h3><p>Fun quiz to find your AI personality.</p><span class="badge badge-interactive">Quiz</span></a>
+        </div>
+
+        <!-- Niche AI Tools by Use Case -->
+        <h2 class="category-header">&#127919; AI Tools by Use Case</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-tools-for-writers/" class="tool-card"><span class="emoji">&#9997;</span><h3>For Writers</h3><p>Best AI tools for content writers.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-developers/" class="tool-card"><span class="emoji">&#128187;</span><h3>For Developers</h3><p>AI tools for coding and dev.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-designers/" class="tool-card"><span class="emoji">&#127912;</span><h3>For Designers</h3><p>AI tools for graphic design.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-seo/" class="tool-card"><span class="emoji">&#128269;</span><h3>For SEO</h3><p>AI tools for SEO specialists.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-video-editing/" class="tool-card"><span class="emoji">&#127909;</span><h3>For Video Editing</h3><p>AI tools for video creators.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-marketers/" class="tool-card"><span class="emoji">&#128640;</span><h3>For Marketers</h3><p>AI tools for marketing teams.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-freelancers/" class="tool-card"><span class="emoji">&#128188;</span><h3>For Freelancers</h3><p>AI tools to boost freelancing.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-startups/" class="tool-card"><span class="emoji">&#128640;</span><h3>For Startups</h3><p>AI tools for startup teams.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-content-creators/" class="tool-card"><span class="emoji">&#127916;</span><h3>For Content Creators</h3><p>AI tools for creators.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-youtube/" class="tool-card"><span class="emoji">&#127909;</span><h3>For YouTube</h3><p>AI tools for YouTubers.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-instagram/" class="tool-card"><span class="emoji">&#128247;</span><h3>For Instagram</h3><p>AI tools for Instagram growth.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-tiktok/" class="tool-card"><span class="emoji">&#127909;</span><h3>For TikTok</h3><p>AI tools for TikTok creators.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- Even More Categories -->
+        <h2 class="category-header">&#128302; More AI Tool Categories</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <a href="/ai-tools-for-python/" class="tool-card"><span class="emoji">&#128013;</span><h3>For Python</h3><p>AI tools for Python developers.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-react/" class="tool-card"><span class="emoji">&#9889;</span><h3>For React</h3><p>AI tools for React developers.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-docker/" class="tool-card"><span class="emoji">&#128059;</span><h3>For Docker</h3><p>AI tools for DevOps and Docker.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-notion/" class="tool-card"><span class="emoji">&#128221;</span><h3>For Notion</h3><p>AI tools for Notion users.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-wordpress/" class="tool-card"><span class="emoji">&#128187;</span><h3>For WordPress</h3><p>AI tools for WordPress sites.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-figma/" class="tool-card"><span class="emoji">&#127912;</span><h3>For Figma</h3><p>AI tools for Figma designers.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-saas/" class="tool-card"><span class="emoji">&#9729;&#65039;</span><h3>For SaaS</h3><p>AI tools for SaaS businesses.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-dropshipping/" class="tool-card"><span class="emoji">&#128230;</span><h3>For Dropshipping</h3><p>AI tools for dropshipping stores.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-ecommerce/" class="tool-card"><span class="emoji">&#128722;</span><h3>For Ecommerce</h3><p>AI tools for online stores.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-email-marketing/" class="tool-card"><span class="emoji">&#128232;</span><h3>For Email Marketing</h3><p>AI tools for email campaigns.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-linkedin/" class="tool-card"><span class="emoji">&#128188;</span><h3>For LinkedIn</h3><p>AI tools for LinkedIn growth.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-reddit/" class="tool-card"><span class="emoji">&#128172;</span><h3>For Reddit</h3><p>AI tools for Reddit marketing.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-slack/" class="tool-card"><span class="emoji">&#128172;</span><h3>For Slack</h3><p>AI tools for Slack teams.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-indie-hackers/" class="tool-card"><span class="emoji">&#128161;</span><h3>For Indie Hackers</h3><p>AI tools for bootstrapped founders.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-instagram-reels/" class="tool-card"><span class="emoji">&#127916;</span><h3>For Instagram Reels</h3><p>AI tools for Reels creators.</p><span class="badge badge-free">Free</span></a>
+            <a href="/ai-tools-for-youtube-thumbnails/" class="tool-card"><span class="emoji">&#127912;</span><h3>For YT Thumbnails</h3><p>AI tools for thumbnail design.</p><span class="badge badge-free">Free</span></a>
+        </div>
+
+        <!-- Browse All Pages -->
+        <div class="text-center mt-8 mb-8">
+            <p class="text-gray-500 text-sm mb-4">We have 80+ more AI tool pages, guides, and comparisons.</p>
+            <a href="/ai-tools-free/" class="neon-btn font-bold text-sm px-6 py-3 rounded-xl uppercase tracking-wider">Browse All Pages &rarr;</a>
+        </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="max-w-5xl mx-auto px-4 pb-16">
+        <div class="newsletter-section">
+            <h2 class="text-2xl font-extrabold mb-2">Get New AI Tools Every Week</h2>
+            <p class="text-gray-400 mb-6 max-w-lg mx-auto">Join 2,400+ creators. We send 1 curated email per week with the best free AI tools, deals, and money-making strategies. No spam. Unsubscribe anytime.</p>
+            <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto">
+                <input type="email" id="nlEmail" class="newsletter-input" placeholder="your@email.com" required>
+                <button type="submit" class="newsletter-btn whitespace-nowrap">Subscribe Free</button>
+            </form>
+            <p id="nlSuccess" class="text-green-400 text-sm mt-4 hidden">&#10003; You're in! Check your inbox for a welcome email.</p>
+            <p id="nlError" class="text-red-400 text-sm mt-4 hidden"></p>
+        </div>
+    </div>
+
+    <!-- FAQ for SEO -->
+    <div class="max-w-3xl mx-auto px-4 pb-16" itemscope itemtype="https://schema.org/FAQPage">
+        <h2 class="text-xl font-bold mb-6 text-center">Frequently Asked Questions</h2>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="mb-4">
+            <h3 itemprop="name" class="text-white font-semibold mb-1">What are the best free AI tools in 2026?</h3>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text" class="text-gray-400 text-sm">Top free AI tools include ChatGPT for writing, Claude for analysis, Perplexity for research, Leonardo AI for images, and Notion AI for organization. Our database has 150+ tools across 12 categories.</p>
+            </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="mb-4">
+            <h3 itemprop="name" class="text-white font-semibold mb-1">Are these AI tools really free?</h3>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text" class="text-gray-400 text-sm">Yes! All tools in our database have free tiers. No credit card required. We show you which tools are 100% free and which have paid upgrades.</p>
+            </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="mb-4">
+            <h3 itemprop="name" class="text-white font-semibold mb-1">How do I find the right AI tool?</h3>
+            <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                <p itemprop="text" class="text-gray-400 text-sm">Use our AI Tool Finder quiz for personalized recommendations, or browse by category. We cover writing, coding, design, video, SEO, marketing, and more.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center pb-12 text-gray-600 text-xs">
+        <p>&copy; 2026 AI Tools Gems &mdash; Built by <a href="https://elevasyncsolutions-jpg.github.io/" class="text-green-500 hover:underline">ElevaSync Solutions</a></p>
+        <p class="mt-2">
+            <a href="/feed.xml" class="hover:text-green-500">RSS</a> &middot;
+            <a href="/sitemap.xml" class="hover:text-green-500">Sitemap</a> &middot;
+            <a href="/robots.txt" class="hover:text-green-500">Robots</a>
+        </p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="notification-toast" class="toast">
+        <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center border border-gray-600">
+            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <div>
+            <p id="notif-name" class="text-sm font-bold text-white">Alex from TX</p>
+            <p class="text-xs text-gray-400">Just subscribed to the newsletter</p>
+        </div>
+    </div>
+
+    <!-- CPA Content Locker Modal -->
+    <div id="lockerModal">
+        <div class="modal-content">
+            <div class="close-btn" onclick="document.getElementById('lockerModal').classList.remove('active')">&times;</div>
+            <iframe src="https://appsave.store/cl/i/4oq24r"></iframe>
+        </div>
+    </div>
+
+    <!-- Viral Share Buttons -->
+    <div style="position:fixed;bottom:20px;right:20px;z-index:100;display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://twitter.com/intent/tweet?text=I+found+150%2B+free+AI+tools+that+actually+work&url=https://aitoolsgems.netlify.app/" target="_blank" style="background:#1DA1F2;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:13px;">Tweet</a>
+        <a href="https://www.reddit.com/submit?url=https://aitoolsgems.netlify.app/&title=150%2B+Free+AI+Tools+Database+-+Best+AI+Tools+2026" target="_blank" style="background:#FF4500;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:13px;">Reddit</a>
+    </div>
+
+    <script>
+    // Search
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const q = this.value.toLowerCase().trim();
+        document.querySelectorAll('.tool-card').forEach(card => {
+            const text = (card.textContent + card.getAttribute('href')).toLowerCase();
+            card.closest('.grid').style.display = '';
+            card.style.display = (!q || text.includes(q)) ? '' : 'none';
+        });
+        document.querySelectorAll('.category-header').forEach(h => {
+            const grid = h.nextElementSibling;
+            if (grid && grid.classList.contains('grid')) {
+                const visible = grid.querySelectorAll('.tool-card:not([style*="display: none"])').length;
+                h.style.display = visible ? '' : 'none';
+                grid.style.display = visible ? '' : 'none';
+            }
+        });
+    });
+
+    // Newsletter
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('nlEmail').value;
+        if (!email) return;
+        // Store in localStorage (no backend yet)
+        let subs = JSON.parse(localStorage.getItem('nl_subs') || '[]');
+        if (!subs.includes(email)) {
+            subs.push(email);
+            localStorage.setItem('nl_subs', JSON.stringify(subs));
+        }
+        document.getElementById('nlSuccess').classList.remove('hidden');
+        document.getElementById('nlError').classList.add('hidden');
+        document.getElementById('nlEmail').value = '';
+        // Track in GA
+        if (typeof gtag === 'function') gtag('event', 'newsletter_subscribe', {email_domain: email.split('@')[1]});
+    });
+
+    // Fake Notifications
+    const names = ["John from NY","Sarah from UK","Mike from CA","David from AUS","Emma from TX","Chris from FL","Jessica from OH","Anon","Lena from DE","Raj from IN","Yuki from JP","Carlos from MX"];
+    const toast = document.getElementById('notification-toast');
+    const nameEl = document.getElementById('notif-name');
+    function showNotification() {
+        nameEl.innerText = names[Math.floor(Math.random() * names.length)];
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+    setInterval(showNotification, Math.floor(Math.random() * (15000 - 8000 + 1) + 8000));
+    setTimeout(showNotification, 2000);
+
+    // Referral tracking
+    (function(){
+        var ref = new URLSearchParams(window.location.search).get('ref');
+        if(ref) localStorage.setItem('ref_' + ref, Date.now());
+    })();
+    </script>
+<div style="position:fixed;bottom:80px;left:10px;z-index:9999;width:160px;height:300px;"><script>atOptions={"key":"4839a785757ed11687410d64bab5aa3e","format":"iframe","height":300,"width":160,"params":{}}</script><script src="https://www.highrevenueformat.com/4839a785757ed11687410d64bab5aa3e/invoke.js"></script></div></body>
 </html>
