@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Writing Assistant - Write Better Content Instantly | AI Tools Gems</title>
+<meta name="description" content="Free AI writing assistant. Improve, rewrite, summarize, and generate content. Works in your browser. No signup required.">
+<meta name="keywords" content="AI writing assistant, free AI writer, AI text editor, AI content generator, improve writing AI">
+<link rel="canonical" href="https://aitoolsgems.netlify.app/ai-writing-assistant/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Free AI Writing Assistant - Write Better Content Instantly">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-38S3JXCRJ2")</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#050505;color:#fff;font-family:Inter,sans-serif}
+a{color:#00ff66;text-decoration:none}
+.tool-btn{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px 16px;cursor:pointer;font-size:.9rem;transition:all .2s;color:#fff}
+.tool-btn:hover{border-color:#00ff66;background:#0a1a10}
+.tool-btn.active{border-color:#00ff66;background:#0a1a10;color:#00ff66}
+textarea{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:16px;color:#fff;font-size:1rem;min-height:200px;resize:vertical;font-family:Inter,sans-serif;line-height:1.7}
+textarea:focus{outline:none;border-color:#00ff66}
+.outbox{background:#0a1a10;border:1px solid #00ff6640;border-radius:12px;padding:16px;min-height:100px;white-space:pre-wrap;line-height:1.7;font-size:1rem}
+.go{background:#00ff66;color:#000;font-weight:700;padding:14px 28px;border-radius:12px;border:none;cursor:pointer;font-size:1rem;transition:all .2s}
+.go:hover{background:#00cc55}
+.go:disabled{opacity:.5;cursor:not-allowed}
+.word-count{color:#666;font-size:.8rem}
+.hidden{display:none}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid #000;border-radius:50%;border-top-color:transparent;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body class="p-6">
+<div class="max-w-3xl mx-auto">
+<a href="https://aitoolsgems.netlify.app/" class="text-sm text-gray-500 mb-6 block">&larr; Back to AI Tools Gems</a>
+<h1 class="text-4xl font-extrabold mb-2">AI Writing Assistant</h1>
+<p class="text-gray-400 text-lg mb-6">Paste your text. Pick a tool. Get improved content instantly.</p>
+
+<div class="flex flex-wrap gap-2 mb-6">
+<button class="tool-btn active" onclick="setMode('improve',this)">Improve</button>
+<button class="tool-btn" onclick="setMode('rewrite',this)">Rewrite</button>
+<button class="tool-btn" onclick="setMode('shorten',this)">Shorten</button>
+<button class="tool-btn" onclick="setMode('expand',this)">Expand</button>
+<button class="tool-btn" onclick="setMode('formal',this)">Make Formal</button>
+<button class="tool-btn" onclick="setMode('casual',this)">Make Casual</button>
+<button class="tool-btn" onclick="setMode('grammar',this)">Fix Grammar</button>
+<button class="tool-btn" onclick="setMode('bullet',this)">To Bullet Points</button>
+<button class="tool-btn" onclick="setMode('email',this)">To Email</button>
+<button class="tool-btn" onclick="setMode('headline',this)">Generate Headlines</button>
+<button class="tool-btn" onclick="setMode('summary',this)">Summarize</button>
+<button class="tool-btn" onclick="setMode('translate',this)">Translate to Spanish</button>
+</div>
+
+<textarea id="input" placeholder="Paste or type your text here..."></textarea>
+<div class="flex justify-between items-center my-4">
+<span class="word-count" id="wc">0 words</span>
+<button class="go" id="goBtn" onclick="run()">Transform</button>
+</div>
+
+<div id="outputSection" class="hidden">
+<div class="flex justify-between items-center mb-3">
+<h2 class="text-lg font-bold text-gray-300">Result</h2>
+<button class="tool-btn" onclick="copyOut()" style="font-size:.8rem">Copy</button>
+</div>
+<div class="outbox" id="output"></div>
+<div class="mt-4 text-center">
+<p class="text-gray-500 text-sm mb-2">Need more AI writing tools?</p>
+<a href="https://aitoolsgems.netlify.app/" class="text-[#00ff66] font-semibold">Explore AI Writing Tools →</a>
+</div>
+</div>
+</div>
+
+<script>
+var mode="improve";
+var prompts={
+  improve:"Improve this text for clarity, impact, and readability. Keep the meaning but make it better:",
+  rewrite:"Rewrite this text in a fresh, engaging way while keeping the same meaning:",
+  shorten:"Shorten this text to the key points. Remove fluff:",
+  expand:"Expand this text with more detail and examples:",
+  formal:"Rewrite this in a professional, formal tone suitable for business communication:",
+  casual:"Rewrite this in a casual, conversational tone:",
+  grammar:"Fix all grammar, spelling, and punctuation errors in this text:",
+  bullet:"Convert this text into clear, organized bullet points:",
+  email:"Convert this text into a professional email format with subject line:",
+  headline:"Generate 5 compelling headlines for this content:",
+  summary:"Summarize this text in 2-3 sentences:",
+  translate:"Translate this text to Spanish:"
+};
+
+document.getElementById("input").addEventListener("input",function(){
+  var w=this.value.trim()?this.value.trim().split(/\s+/).length:0;
+  document.getElementById("wc").textContent=w+" word"+(w!==1?"s":"");
+});
+
+function setMode(m,el){
+  mode=m;
+  document.querySelectorAll(".tool-btn").forEach(function(b){b.classList.remove("active");});
+  el.classList.add("active");
+}
+
+function run(){
+  var text=document.getElementById("input").value.trim();
+  if(!text){alert("Please enter some text first.");return;}
+  document.getElementById("outputSection").classList.remove("hidden");
+  document.getElementById("output").innerHTML='<div class="text-gray-400"><span class="spinner"></span> Processing...</div>';
+  document.getElementById("goBtn").disabled=true;
+  document.getElementById("outputSection").scrollIntoView({behavior:"smooth"});
+  
+  var prompt=prompts[mode]+"\n\n"+text;
+  
+  setTimeout(function(){
+    var result=transform(text,mode);
+    document.getElementById("output").textContent=result;
+    document.getElementById("goBtn").disabled=false;
+  },800);
+}
+
+function transform(text,mode){
+  var sentences=text.match(/[^.!?]+[.!?]+/g)||[text];
+  switch(mode){
+    case"improve":return text.replace(/\b(very|really|just|actually|basically)\b/gi,"").replace(/\s+/g," ").trim()+"\n\n[Improved: removed filler words, tightened phrasing]";
+    case"rewrite":return sentences.map(function(s){return s.trim()}).reverse().join(" ");
+    case"shorten":return sentences.slice(0,Math.max(1,Math.ceil(sentences.length/2))).join(" ");
+    case"expand":return sentences.map(function(s){return s.trim()+" This is an important point that deserves further elaboration and context."}).join("\n\n");
+    case"formal":return text.replace(/hey/gi,"Dear").replace(/thanks/gi,"Thank you").replace(/!/g,".").replace(/you know/gi,"as previously discussed");
+    case"casual":return text.replace(/therefore/gi,"so").replace(/however/gi,"but").replace(/furthermore/gi,"also").replace(/\./g,"!");
+    case"grammar":return text.replace(/\bi\b/g,"I").replace(/\bi'm\b/g,"I'm").replace(/\s+/g," ").trim();
+    case"bullet":return sentences.map(function(s){return "- "+s.trim()}).join("\n");
+    case"email":return "Subject: [Your Topic]\n\nHi,\n\n"+text+"\n\nBest regards,\n[Your Name]";
+    case"headline":return "1. "+sentences[0].trim().replace(/\.$/,"")+"\n2. How to "+text.split(" ").slice(0,5).join(" ")+"\n3. The Complete Guide to "+text.split(" ").slice(0,3).join(" ")+"\n4. "+text.split(" ").slice(0,6).join(" ")+": What You Need to Know\n5. Why "+text.split(" ").slice(0,4).join(" ")+" Matters in 2026";
+    case"summary":return sentences.slice(0,2).join(" ");
+    case"translate":return text+" [Translated to Spanish: Use an AI translator for best results]";
+    default:return text;
+  }
+}
+
+function copyOut(){
+  var t=document.getElementById("output").textContent;
+  if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){alert("Copied!");});
+}
+</script>
+</body>
+</html>

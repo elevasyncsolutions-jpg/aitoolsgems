@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Comparison - Compare Any 2 Tools Side by Side | AI Tools Gems</title>
+<meta name="description" content="Compare AI tools side by side. ChatGPT vs Claude, Midjourney vs DALL-E, Copilot vs Cursor. Instant comparison with features, pricing, and ratings.">
+<meta name="keywords" content="AI tool comparison, compare AI tools, ChatGPT vs Claude, Midjourney vs DALL-E">
+<link rel="canonical" href="https://aitoolsgems.netlify.app/ai-compare/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="AI Tool Comparison - Compare Any 2 Tools Side by Side">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-38S3JXCRJ2")</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#050505;color:#fff;font-family:Inter,sans-serif}
+a{color:#00ff66;text-decoration:none}
+select{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px;color:#fff;font-size:1rem;margin-bottom:16px}
+select:focus{outline:none;border-color:#00ff66}
+.cmp{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin-bottom:16px}
+.cmp h3{font-weight:700;margin-bottom:8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.side{background:#111;border:1px solid #222;border-radius:12px;padding:20px}
+.side h3{font-size:1.3rem;font-weight:800;margin-bottom:12px}
+.winner{border-color:#00ff66 !important;background:#0a1a10 !important}
+.bar{height:8px;background:#222;border-radius:8px;margin:4px 0}
+.bar .fill{height:100%;border-radius:8px;background:#00ff66}
+.cbar{display:flex;justify-content:space-between;font-size:.8rem;color:#9ca3af}
+.hidden{display:none}
+.cta{background:#00ff66;color:#000;font-weight:800;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;font-size:1.1rem;display:inline-block;text-decoration:none}
+</style>
+</head>
+<body class="p-6">
+<div class="max-w-4xl mx-auto">
+<a href="https://aitoolsgems.netlify.app/" class="text-sm text-gray-500 mb-6 block">&larr; Back to AI Tools Gems</a>
+<h1 class="text-4xl font-extrabold mb-2">AI Tool Comparison</h1>
+<p class="text-gray-400 text-lg mb-8">Select two tools. See them side by side.</p>
+
+<div class="row mb-8">
+<div><label class="text-gray-400 text-sm mb-2 block">Tool 1</label><select id="t1" onchange="compare()"></select></div>
+<div><label class="text-gray-400 text-sm mb-2 block">Tool 2</label><select id="t2" onchange="compare()"></select></div>
+</div>
+
+<div id="out"></div>
+
+<div class="text-center mt-8">
+<a href="https://aitoolsgems.netlify.app/" class="cta">Find More Tools</a>
+</div>
+</div>
+<script>
+var tools=[
+{id:"chatgpt",name:"ChatGPT",cat:"Writing",price:"$20/mo",free:true,rating:9.2,context:"128K",speed:9,multimodal:true,api:true,code:true,writing:true,image:true,video:false,enterprise:true,desc:"The most versatile AI chatbot. GPT-4o, DALL-E, plugins, web browsing."},
+{id:"claude",name:"Claude",cat:"Writing",price:"$20/mo",free:true,rating:9.4,context:"200K",speed:8,multimodal:true,api:true,code:true,writing:true,image:false,video:false,enterprise:true,desc:"Best for long documents and nuanced writing. 200K context window."},
+{id:"gemini",name:"Gemini",cat:"Writing",price:"Free",free:true,rating:8.5,context:"1M",speed:9,multimodal:true,api:true,code:true,writing:true,image:true,video:true,enterprise:true,desc:"Google's AI. Largest context window. Integrated with Google services."},
+{id:"midjourney",name:"Midjourney",cat:"Image",price:"$10/mo",free:false,rating:9.5,context:"N/A",speed:7,multimodal:false,api:false,code:false,writing:false,image:true,video:false,enterprise:false,desc:"Best quality AI image generation. Discord-based."},
+{id:"dalle",name:"DALL-E 3",cat:"Image",price:"$20/mo",free:true,rating:8.8,context:"N/A",speed:8,multimodal:false,api:true,code:false,writing:false,image:true,video:false,enterprise:true,desc:"OpenAI's image generator. Integrated with ChatGPT."},
+{id:"copilot",name:"GitHub Copilot",cat:"Code",price:"$10/mo",free:true,rating:9.0,context:"N/A",speed:9,multimodal:false,api:false,code:true,writing:false,image:false,video:false,enterprise:true,desc:"AI pair programmer. Best language support."},
+{id:"cursor",name:"Cursor",cat:"Code",price:"$20/mo",free:true,rating:9.3,context:"N/A",speed:9,multimodal:false,api:false,code:true,writing:false,image:false,video:false,enterprise:true,desc:"AI-native code editor. Chat with your codebase."},
+{id:"jasper",name:"Jasper",cat:"Writing",price:"$49/mo",free:false,rating:8.0,context:"N/A",speed:7,multimodal:false,api:true,code:false,writing:true,image:false,video:false,enterprise:true,desc:"Marketing copy and content at scale with brand voice."},
+{id:"canva",name:"Canva",cat:"Design",price:"$13/mo",free:true,rating:8.7,context:"N/A",speed:9,multimodal:true,api:false,code:false,writing:true,image:true,video:false,enterprise:true,desc:"All-in-one design with AI features. Templates, editing, brand kit."},
+{id:"descript",name:"Descript",cat:"Video",price:"$24/mo",free:true,rating:8.9,context:"N/A",speed:7,multimodal:true,api:false,code:false,writing:true,image:false,video:true,enterprise:true,desc:"Edit video by editing text. Transcription, screen recording."},
+{id:"runway",name:"Runway",cat:"Video",price:"$15/mo",free:true,rating:8.6,context:"N/A",speed:6,multimodal:false,api:true,code:false,writing:false,image:false,video:true,enterprise:false,desc:"AI video generation. Gen-2 text-to-video."},
+{id:"notion",name:"Notion AI",cat:"Productivity",price:"$10/mo",free:true,rating:8.3,context:"N/A",speed:9,multimodal:false,api:false,code:false,writing:true,image:false,video:false,enterprise:true,desc:"AI writing assistant built into Notion workspace."},
+{id:"grammarly",name:"Grammarly",cat:"Writing",price:"$12/mo",free:true,rating:8.4,context:"N/A",speed:10,multimodal:false,api:true,code:false,writing:true,image:false,video:false,enterprise:true,desc:"Grammar, style, and tone checking. Browser extension."},
+{id:"capcut",name:"CapCut",cat:"Video",price:"$8/mo",free:true,rating:8.8,context:"N/A",speed:8,multimodal:true,api:false,code:false,writing:false,image:false,video:true,enterprise:false,desc:"Video editing with AI effects. Mobile and desktop."},
+{id:"perplexity",name:"Perplexity",cat:"Search",price:"$20/mo",free:true,rating:9.1,context:"N/A",speed:9,multimodal:true,api:true,code:false,writing:true,image:false,video:false,enterprise:true,desc:"AI search engine with citations. Real-time web access."},
+{id:"elevenlabs",name:"ElevenLabs",cat:"Audio",price:"$5/mo",free:true,rating:9.0,context:"N/A",speed:7,multimodal:false,api:true,code:false,writing:false,image:false,video:false,enterprise:true,desc:"Best AI voice synthesis and cloning. Text-to-speech."},
+{id:"suno",name:"Suno AI",cat:"Music",price:"$10/mo",free:true,rating:8.7,context:"N/A",speed:5,multimodal:false,api:false,code:false,writing:false,image:false,video:false,enterprise:false,desc:"AI music generation. Create full songs from text prompts."}
+];
+
+var s1=document.getElementById("t1"),s2=document.getElementById("t2");
+tools.forEach(function(t,i){
+  s1.innerHTML+='<option value="'+i+'">'+t.name+' ('+t.cat+')</option>';
+  s2.innerHTML+='<option value="'+(i==1?0:i==0?1:i)+'">'+tools[i==1?0:i==0?1:i].name+' ('+tools[i==1?0:i==0?1:i].cat+')</option>';
+});
+s2.value=1;
+
+function bar(val,max){return '<div class="cbar"><span>'+val+'</span><span>'+max+'</span></div><div class="bar"><div class="fill" style="width:'+(val/max*100)+'%"></div></div>';}
+
+function compare(){
+  var a=tools[s1.value],b=tools[s2.value];
+  var features=[
+    {l:"Price",a:a.price,b:b.price},
+    {l:"Free Tier",a:a.free?"Yes":"No",b:b.free?"Yes":"No"},
+    {l:"Rating",a:bar(a.rating,10),b:bar(b.rating,10),raw:true},
+    {l:"Speed",a:bar(a.speed,10),b:bar(b.speed,10),raw:true},
+    {l:"Context",a:a.context,b:b.context},
+    {l:"Multimodal",a:a.multimodal?"Yes":"No",b:b.multimodal?"Yes":"No"},
+    {l:"API Access",a:a.api?"Yes":"No",b:b.api?"Yes":"No"},
+    {l:"Best For",a:a.cat,b:b.cat}
+  ];
+  var aw=a.rating>=b.rating,bw=b.rating>=a.rating;
+  var h='<div class="row"><div class="side'+(aw?' winner':'')+'"><h3>'+a.name+'</h3><p class="text-gray-400 text-sm mb-4">'+a.desc+'</p>';
+  features.forEach(function(f){h+='<div class="mb-3"><div class="text-gray-500 text-xs mb-1">'+f.l+'</div><div'+(f.raw?'':' class="font-semibold"')+'>'+(f.raw?f.a:f.a)+'</div></div>';});
+  h+='</div><div class="side'+(bw?' winner':'')+'"><h3>'+b.name+'</h3><p class="text-gray-400 text-sm mb-4">'+b.desc+'</p>';
+  features.forEach(function(f){h+='<div class="mb-3"><div class="text-gray-500 text-xs mb-1">'+f.l+'</div><div'+(f.raw?'':' class="font-semibold"')+'>'+(f.raw?f.b:f.b)+'</div></div>';});
+  h+='</div></div>';
+  h+='<div class="text-center text-gray-400 my-4">Winner: <span class="text-[#00ff66] font-bold text-lg">'+(a.rating>b.rating?a.name:b.rating>a.rating?b.name:'Tie')+'</span></div>';
+  h+='<div class="text-center"><a href="https://aitoolsgems.netlify.app/" class="text-[#00ff66] font-semibold">See all '+a.cat.toLowerCase()+' tools →</a></div>';
+  document.getElementById("out").innerHTML=h;
+}
+compare();
+</script>
+</body>
+</html>

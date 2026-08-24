@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Cost Calculator - Calculate Your AI Stack Cost | AI Tools Gems</title>
+<meta name="description" content="Calculate the total cost of your AI tool stack. Compare free vs paid options. Find the cheapest combination for your needs.">
+<meta name="keywords" content="AI tool cost, AI pricing, ChatGPT cost, AI tools budget, AI subscription cost">
+<link rel="canonical" href="https://aitoolsgems.netlify.app/ai-cost-calculator/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="AI Tool Cost Calculator - Calculate Your Stack Cost">
+<meta property="og:description" content="See exactly how much your AI tools cost. Free calculator.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38S3JXCRJ2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-38S3JXCRJ2")</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background:#050505;color:#fff;font-family:Inter,sans-serif}
+a{color:#00ff66;text-decoration:none}
+.tool-row{background:#111;border:1px solid #222;border-radius:12px;padding:16px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tool-row label{flex:1;min-width:150px;font-weight:600}
+.tool-row input[type=checkbox]{width:20px;height:20px;accent-color:#00ff66}
+.tool-row .price{color:#9ca3af;font-size:.9rem;min-width:60px;text-align:right}
+.total-bar{background:linear-gradient(135deg,#0a1a10,#111);border:2px solid #00ff66;border-radius:16px;padding:24px;text-align:center;margin:24px 0}
+.total-bar .amount{font-size:3rem;font-weight:800;color:#00ff66}
+.total-bar .label{color:#9ca3af;margin-top:4px}
+.category-header{color:#00ff66;font-weight:700;font-size:1.1rem;margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid #222}
+</style>
+</head>
+<body class="p-6">
+<div class="max-w-3xl mx-auto">
+<a href="https://aitoolsgems.netlify.app/" class="text-sm text-gray-500 mb-6 block">&larr; Back to AI Tools Gems</a>
+
+<h1 class="text-4xl font-extrabold mb-2">AI Tool Cost Calculator</h1>
+<p class="text-gray-400 text-lg mb-6">Select the tools you use. See your total monthly cost instantly.</p>
+
+<div class="total-bar">
+<div class="amount" id="totalCost">$0.00</div>
+<div class="label">per month</div>
+<div class="label mt-1" id="yearlyCost">$0.00/year</div>
+</div>
+
+<div id="toolList"></div>
+
+<div class="text-center mt-8">
+<p class="text-gray-500 mb-3">Find cheaper alternatives:</p>
+<a href="https://aitoolsgems.netlify.app/ai-tool-finder/" class="inline-block bg-[#00ff66] text-black font-bold px-6 py-3 rounded-xl">Find Better Tools →</a>
+</div>
+</div>
+
+<script>
+var tools = {
+  "Writing & Content": [
+    {name:"ChatGPT Plus",price:20,free:false},
+    {name:"Claude Pro",price:20,free:false},
+    {name:"Jasper",price:49,free:false},
+    {name:"Copy.ai Pro",price:49,free:false},
+    {name:"Grammarly Premium",price:12,free:false},
+    {name:"Writesonic",price:36,free:false},
+    {name:"ChatGPT Free",price:0,free:true},
+    {name:"Grammarly Free",price:0,free:true}
+  ],
+  "Image & Design": [
+    {name:"Midjourney",price:10,free:false},
+    {name:"Canva Pro",price:13,free:false},
+    {name:"Adobe Firefly",price:23,free:false},
+    {name:"Canva Free",price:0,free:true},
+    {name:"Leonardo AI Free",price:0,free:true}
+  ],
+  "Code & Development": [
+    {name:"GitHub Copilot",price:10,free:false},
+    {name:"Cursor Pro",price:20,free:false},
+    {name:"Tabnine Pro",price:12,free:false},
+    {name:"GitHub Copilot Free",price:0,free:true},
+    {name:"Codeium Free",price:0,free:true}
+  ],
+  "Video & Audio": [
+    {name:"CapCut Pro",price:8,free:false},
+    {name:"Descript Pro",price:33,free:false},
+    {name:"Opus Clip",price:19,free:false},
+    {name:"Runway",price:15,free:false},
+    {name:"CapCut Free",price:0,free:true},
+    {name:"DaVinci Resolve Free",price:0,free:true}
+  ],
+  "Productivity": [
+    {name:"Notion AI",price:10,free:false},
+    {name:"Otter.ai Pro",price:17,free:false},
+    {name:"Clockwise",price:7,free:false},
+    {name:"Notion Free",price:0,free:true},
+    {name:"Otter.ai Free",price:0,free:true}
+  ],
+  "Marketing": [
+    {name:"HubSpot Starter",price:20,free:false},
+    {name:"Mailchimp Standard",price:20,free:false},
+    {name:"Hootsuite",price:99,free:false},
+    {name:"HubSpot Free CRM",price:0,free:true},
+    {name:"Mailchimp Free",price:0,free:true}
+  ]
+};
+
+var el = document.getElementById('toolList');
+var idx = 0;
+
+Object.keys(tools).forEach(function(cat) {
+  var html = '<div class="category-header">' + cat + '</div>';
+  tools[cat].forEach(function(t) {
+    var id = 'tool' + idx;
+    idx++;
+    html += '<div class="tool-row">' +
+      '<input type="checkbox" id="' + id + '" onchange="updateTotal()" data-price="' + t.price + '">' +
+      '<label for="' + id + '">' + t.name + '</label>' +
+      '<span class="price">' + (t.free ? 'Free' : '$' + t.price + '/mo') + '</span>' +
+      '</div>';
+  });
+  el.innerHTML += html;
+});
+
+function updateTotal() {
+  var total = 0;
+  document.querySelectorAll('input[type=checkbox]:checked').forEach(function(cb) {
+    total += parseFloat(cb.dataset.price);
+  });
+  document.getElementById('totalCost').textContent = '$' + total.toFixed(2);
+  document.getElementById('yearlyCost').textContent = '$' + (total * 12).toFixed(2) + '/year';
+}
+</script>
+</body>
+</html>
